@@ -41,7 +41,17 @@ public class LoggingFilter extends OncePerRequestFilter {
 
     private void logResponse(ContentCachingResponseWrapper response) {
         String responseBody = new String(response.getContentAsByteArray(), StandardCharsets.UTF_8);
-        logger.info(String.format("Response status: %d, Body: %s",
-                response.getStatus(), responseBody));
+
+        int status = response.getStatus();
+
+        switch (status / 100) {
+            case 4:
+            case 5:
+                logger.error(String.format("Response status: %d, Body: %s", status, responseBody));
+                break;
+            default:
+                logger.info(String.format("Response status: %d, Body: %s", status, responseBody));
+                break;
+        }
     }
 }
