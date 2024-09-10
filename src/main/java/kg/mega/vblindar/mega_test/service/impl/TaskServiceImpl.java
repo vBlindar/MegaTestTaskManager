@@ -7,7 +7,9 @@ import kg.mega.vblindar.mega_test.dto.UpdateTaskDTO;
 import kg.mega.vblindar.mega_test.repository.TaskRepository;
 import kg.mega.vblindar.mega_test.service.TaskService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
+
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -64,6 +66,8 @@ public class TaskServiceImpl implements TaskService {
         return taskRepository.findById(id);
     }
 
+
+    @Cacheable(value = "tasksCache")
     @Override
     public List<Task> findAll() {
         return taskRepository.findAll();
