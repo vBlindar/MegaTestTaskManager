@@ -19,7 +19,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter
     {
         http.httpBasic().and()
                 .authorizeRequests()
-                .antMatchers("/task").fullyAuthenticated()
+                .antMatchers("/task/**").fullyAuthenticated()
                 .antMatchers("/api").permitAll().and()
                 .csrf().disable()
                 .headers()

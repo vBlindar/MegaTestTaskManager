@@ -7,6 +7,7 @@ import kg.mega.vblindar.mega_test.dto.UpdateTaskDTO;
 import kg.mega.vblindar.mega_test.repository.TaskRepository;
 import kg.mega.vblindar.mega_test.service.TaskService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +23,7 @@ public class TaskServiceImpl implements TaskService {
 
     private final EmailServiceImpl emailService;
 
+    @CacheEvict(value = "tasksCache", allEntries = true)
     @Override
     public Task create(CreateTaskDTO taskDTO) {
 
@@ -40,6 +42,7 @@ public class TaskServiceImpl implements TaskService {
         return taskRepository.save(task);
     }
 
+    @CacheEvict(value = "tasksCache", allEntries = true)
     @Override
     public Task update(UpdateTaskDTO taskDTO) {
         var task = taskRepository.findById(taskDTO.getId());
@@ -54,7 +57,7 @@ public class TaskServiceImpl implements TaskService {
         task.setStatus(taskDTO.getStatus());
         return taskRepository.save(task);
     }
-
+    @CacheEvict(value = "tasksCache", allEntries = true)
     @Override
     public void delete(Long id) {
         var task = taskRepository.findById(id);
