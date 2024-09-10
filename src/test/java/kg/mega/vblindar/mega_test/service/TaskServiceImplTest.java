@@ -1,6 +1,7 @@
 package kg.mega.vblindar.mega_test.service;
 
 import kg.mega.vblindar.mega_test.domain.Task;
+import kg.mega.vblindar.mega_test.domain.TaskStatus;
 import kg.mega.vblindar.mega_test.dto.CreateTaskDTO;
 import kg.mega.vblindar.mega_test.dto.UpdateTaskDTO;
 import kg.mega.vblindar.mega_test.repository.TaskRepository;
@@ -49,6 +50,7 @@ class TaskServiceImplTest {
         updated.setEmail("updated@example.com");
         updated.setCreatedAt(LocalDateTime.now());
         updated.setLastUpdate(LocalDateTime.now());
+        updated.setStatus(TaskStatus.COMPLETED);
     }
 
     @Test
@@ -61,22 +63,6 @@ class TaskServiceImplTest {
 
         assertNotNull(createdTask);
         assertEquals("Test Task", createdTask.getTheme());
-    }
-
-    @Test
-    void updateTaskTest() {
-        when(taskRepository.findById(anyLong())).thenReturn(task);
-        UpdateTaskDTO updateTaskDTO = new UpdateTaskDTO(1L, "Updated Task", "Updated text", "updated@example.com");
-        when(taskRepository.save(any())).thenReturn(updated);
-
-        Task updatedTask = taskService.update(updateTaskDTO);
-
-        verify(taskRepository, times(1)).findById(anyLong());
-        verify(taskRepository, times(1)).save(any(Task.class));
-
-        assertEquals("Updated Task", updatedTask.getTheme());
-        assertEquals("Updated text", updatedTask.getText());
-        assertEquals("updated@example.com", updatedTask.getEmail());
     }
 
 
@@ -112,5 +98,22 @@ class TaskServiceImplTest {
         assertFalse(allTasks.isEmpty());
         assertEquals(1, allTasks.size());
         assertEquals("Test Task", allTasks.get(0).getTheme());
+    }
+
+    @Test
+    void updateTaskTest() {
+        when(taskRepository.findById(anyLong())).thenReturn(task);
+        UpdateTaskDTO updateTaskDTO = new UpdateTaskDTO(1L, "Updated Task", "Updated text", "updated@example.com", TaskStatus.COMPLETED);
+        when(taskRepository.save(any())).thenReturn(updated);
+
+        Task updatedTask = taskService.update(updateTaskDTO);
+
+        verify(taskRepository, times(1)).findById(anyLong());
+        verify(taskRepository, times(1)).save(any(Task.class));
+
+        assertEquals("Updated Task", updatedTask.getTheme());
+        assertEquals("Updated text", updatedTask.getText());
+        assertEquals("updated@example.com", updatedTask.getEmail());
+        assertEquals(TaskStatus.COMPLETED,updatedTask.getStatus());
     }
 }

@@ -16,5 +16,6 @@ public class Task {
     LocalDateTime createdAt;
     LocalDateTime lastUpdate;
     String email;
+    TaskStatus status;
 
 }

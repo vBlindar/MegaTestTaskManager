@@ -1,6 +1,7 @@
 package kg.mega.vblindar.mega_test.service.impl;
 
 import kg.mega.vblindar.mega_test.domain.Task;
+import kg.mega.vblindar.mega_test.domain.TaskStatus;
 import kg.mega.vblindar.mega_test.dto.CreateTaskDTO;
 import kg.mega.vblindar.mega_test.dto.UpdateTaskDTO;
 import kg.mega.vblindar.mega_test.repository.TaskRepository;
@@ -26,6 +27,7 @@ public class TaskServiceImpl implements TaskService {
         task.setEmail(taskDTO.getEmail());
         task.setCreatedAt(LocalDateTime.now());
         task.setLastUpdate(LocalDateTime.now());
+        task.setStatus(TaskStatus.PENDING);
 
         return taskRepository.save(task);
     }
@@ -41,7 +43,7 @@ public class TaskServiceImpl implements TaskService {
         else
             task.setEmail(null);
         task.setLastUpdate(LocalDateTime.now());
-
+        task.setStatus(taskDTO.getStatus());
         return taskRepository.save(task);
     }
 

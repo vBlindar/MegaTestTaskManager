@@ -2,6 +2,7 @@ package kg.mega.vblindar.mega_test.entity;
 
 
 import kg.mega.vblindar.mega_test.domain.Task;
+import kg.mega.vblindar.mega_test.domain.TaskStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,8 @@ public class TaskData {
     private LocalDateTime createdAt;
     private LocalDateTime lastUpdate;
     private String email;
+    @Enumerated(EnumType.STRING)
+    private TaskStatus status;
 
 
     public Task fromThis() {
@@ -33,7 +36,8 @@ public class TaskData {
                 text,
                 createdAt,
                 lastUpdate,
-                email);
+                email,
+                status);
 
     }
 
@@ -44,7 +48,8 @@ public class TaskData {
                 task.getText(),
                 task.getCreatedAt(),
                 task.getLastUpdate(),
-                task.getEmail()
+                task.getEmail(),
+                task.getStatus()
         );
     }
 }

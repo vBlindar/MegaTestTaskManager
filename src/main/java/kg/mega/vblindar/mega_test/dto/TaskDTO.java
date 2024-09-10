@@ -1,6 +1,7 @@
 package kg.mega.vblindar.mega_test.dto;
 
 import kg.mega.vblindar.mega_test.domain.Task;
+import kg.mega.vblindar.mega_test.domain.TaskStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ public class TaskDTO {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private String email;
+    private TaskStatus status;
 
     public static TaskDTO from(Task task) {
         return new TaskDTO(task.getId(),
@@ -25,7 +27,8 @@ public class TaskDTO {
                 task.getText(),
                 task.getCreatedAt(),
                 task.getLastUpdate(),
-                task.getEmail());
+                task.getEmail(),
+                task.getStatus());
     }
 
 
