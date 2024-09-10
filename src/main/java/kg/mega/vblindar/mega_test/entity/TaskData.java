@@ -23,7 +23,7 @@ public class TaskData {
     private String text;
     private LocalDateTime createdAt;
     private LocalDateTime lastUpdate;
-    private String mail;
+    private String email;
 
 
     public Task fromThis() {
@@ -33,7 +33,7 @@ public class TaskData {
                 text,
                 createdAt,
                 lastUpdate,
-                mail);
+                email);
 
     }
 
