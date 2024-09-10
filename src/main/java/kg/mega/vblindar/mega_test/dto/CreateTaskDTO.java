@@ -20,4 +20,10 @@ public class CreateTaskDTO {
     @Email(message = "Must be in email address format")
     private String email;
 
+    @Override
+    public String toString() {
+        return
+                "theme:'" + theme + '\'' +
+                ", text:'" + text + '\'';
+    }
 }

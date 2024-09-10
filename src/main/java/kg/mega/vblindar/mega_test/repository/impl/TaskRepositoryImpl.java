@@ -6,12 +6,13 @@ import kg.mega.vblindar.mega_test.exception.NotFoundException;
 import kg.mega.vblindar.mega_test.repository.TaskRepository;
 import kg.mega.vblindar.mega_test.repository.jpa.JpaTaskRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Repository
+@Component
 @RequiredArgsConstructor
 public class TaskRepositoryImpl implements TaskRepository {
     private final JpaTaskRepository repository;

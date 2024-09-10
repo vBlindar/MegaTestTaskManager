@@ -18,16 +18,22 @@ public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository taskRepository;
 
+    private final EmailServiceImpl emailService;
+
     @Override
     public Task create(CreateTaskDTO taskDTO) {
 
         Task task = new Task();
         task.setTheme(taskDTO.getTheme());
         task.setText(taskDTO.getText());
-        task.setEmail(taskDTO.getEmail());
         task.setCreatedAt(LocalDateTime.now());
         task.setLastUpdate(LocalDateTime.now());
         task.setStatus(TaskStatus.PENDING);
+
+        if(taskDTO.getEmail()!=null){
+            task.setEmail(taskDTO.getEmail());
+            emailService.sendMail(taskDTO);
+        }
 
         return taskRepository.save(task);
     }

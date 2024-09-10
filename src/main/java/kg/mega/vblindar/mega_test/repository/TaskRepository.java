@@ -2,10 +2,11 @@ package kg.mega.vblindar.mega_test.repository;
 
 
 import kg.mega.vblindar.mega_test.domain.Task;
-import kg.mega.vblindar.mega_test.entity.TaskData;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface TaskRepository {
     Task save(Task task);
 
