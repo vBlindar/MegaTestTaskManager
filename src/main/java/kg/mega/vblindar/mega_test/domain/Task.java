@@ -15,6 +15,6 @@ public class Task {
     String text;
     LocalDateTime createdAt;
     LocalDateTime lastUpdate;
-    String mail;
+    String email;
 
 }

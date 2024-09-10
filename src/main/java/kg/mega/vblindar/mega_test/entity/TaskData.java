@@ -36,4 +36,15 @@ public class TaskData {
                 mail);
 
     }
+
+    public static TaskData from(Task task){
+        return new TaskData(
+                task.getId(),
+                task.getTheme(),
+                task.getText(),
+                task.getCreatedAt(),
+                task.getLastUpdate(),
+                task.getEmail()
+        );
+    }
 }

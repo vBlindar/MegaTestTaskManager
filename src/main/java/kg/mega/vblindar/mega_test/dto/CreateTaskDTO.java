@@ -14,7 +14,6 @@ public class CreateTaskDTO {
     private String text;
 
     @Email
-    @Null
-    private String mail;
+    private String email;
 
 }

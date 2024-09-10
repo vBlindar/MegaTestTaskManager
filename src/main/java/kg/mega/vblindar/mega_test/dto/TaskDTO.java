@@ -1,4 +1,4 @@
-package kg.mega.vblindar.mega_test.controller;
+package kg.mega.vblindar.mega_test.dto;
 
 import kg.mega.vblindar.mega_test.domain.Task;
 import lombok.AllArgsConstructor;
@@ -17,7 +17,7 @@ public class TaskDTO {
     private String text;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private String mail;
+    private String email;
 
     public static TaskDTO from(Task task) {
         return new TaskDTO(task.getId(),
@@ -25,7 +25,7 @@ public class TaskDTO {
                 task.getText(),
                 task.getCreatedAt(),
                 task.getLastUpdate(),
-                task.getMail());
+                task.getEmail());
     }
 
 
