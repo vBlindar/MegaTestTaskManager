@@ -19,12 +19,12 @@ public class TaskController {
     private final TaskService taskService;
 
     @GetMapping("/{id}")
-    ResponseEntity<TaskDTO> findById(@PathVariable Long id){
+    ResponseEntity<TaskDTO> findById(@PathVariable Long id) {
         return ResponseEntity.status(200).body(TaskDTO.from(taskService.findById(id)));
     }
 
     @GetMapping("/all")
-    ResponseEntity<ListOfTasksDTO> findAll(){
+    ResponseEntity<ListOfTasksDTO> findAll() {
         return ResponseEntity.status(200).body(ListOfTasksDTO.from(taskService.findAll()));
     }
 
@@ -35,16 +35,15 @@ public class TaskController {
     }
 
     @PutMapping
-    ResponseEntity<TaskDTO> update(@RequestBody @Validated UpdateTaskDTO taskDTO){
+    ResponseEntity<TaskDTO> update(@RequestBody @Validated UpdateTaskDTO taskDTO) {
         return ResponseEntity.status(200).body(TaskDTO.from(taskService.update(taskDTO)));
     }
 
     @DeleteMapping("/{id}")
-    ResponseEntity<Long> delete(@PathVariable Long id){
+    ResponseEntity<Long> delete(@PathVariable Long id) {
         taskService.delete(id);
         return ResponseEntity.status(204).body(id);
     }
-
 
 
 }

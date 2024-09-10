@@ -5,5 +5,4 @@ import lombok.Data;
 @Data
 public class UpdateTaskDTO extends CreateTaskDTO {
     private Long id;
-
 }

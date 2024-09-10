@@ -13,7 +13,7 @@ public class CreateTaskDTO {
 
     private String text;
 
-    @Email
+    @Email(message = "Must be in email address format")
     private String email;
 
 }
