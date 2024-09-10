@@ -5,6 +5,7 @@ import kg.mega.vblindar.mega_test.domain.TaskStatus;
 import kg.mega.vblindar.mega_test.dto.CreateTaskDTO;
 import kg.mega.vblindar.mega_test.dto.UpdateTaskDTO;
 import kg.mega.vblindar.mega_test.repository.TaskRepository;
+import kg.mega.vblindar.mega_test.service.EmailService;
 import kg.mega.vblindar.mega_test.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
@@ -21,7 +22,7 @@ public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository taskRepository;
 
-    private final EmailServiceImpl emailService;
+    private final EmailService emailService;
 
     @CacheEvict(value = "tasksCache", allEntries = true)
     @Override

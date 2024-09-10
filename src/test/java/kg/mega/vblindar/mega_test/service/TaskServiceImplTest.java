@@ -23,6 +23,8 @@ class TaskServiceImplTest {
 
     @Mock
     private TaskRepository taskRepository;
+    @Mock
+    private EmailService emailService;
 
     @InjectMocks
     private TaskServiceImpl taskService;
